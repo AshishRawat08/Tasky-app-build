@@ -115,12 +115,12 @@ const updatelocalstorage = () =>{
 
 // load  initial data 
 const LoadInitialData = () => {
-    const localStorageCopy = JSON.parse(localStorage.task)  // here we convert string to JSON for rendering card on screen 
+    const localStorageCopy = JSON.parse(localStorage.task);  // here we convert string to JSON for rendering card on screen 
 
     if (localStorageCopy) state.taskList = localStorageCopy.tasks;
 
-    state.taskList.map((cardDate) => {
-        taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardDate));  //  mistake corrected from innerAdjacentHTML to insertAdjacentHTML
+    state.taskList.map((cardData) => {
+        taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardData));  //  mistake corrected from innerAdjacentHTML to insertAdjacentHTML
     });
 };
 
@@ -256,6 +256,7 @@ const saveEdit = (e) => {
     const targetId = e.target.id;
     const parentNode = e.target.parentNode.parentNode;
     // console.log(parentNode.childNodes);
+    
     const taskTitle = parentNode.childNodes[3].childNodes[3];
     const taskDescription = parentNode.childNodes[3].childNodes[5];
     const taskType = parentNode.childNodes[3].childNodes[7].childNodes[1];
@@ -282,18 +283,30 @@ const saveEdit = (e) => {
     taskType.setAttribute("contenteditable", "false");
 
     submitButton.setAttribute("onclick", "openTask.apply(this, arguments)"); 
-    submitButton.removeAttribute("data-bs-toggle", "modal");
-    submitButton.removeAttribute("data-bs-target", "#showTask");
+    submitButton.setAttribute("data-bs-toggle", "modal");
+    submitButton.setAttribute("data-bs-target", "#showTask");
     submitButton.innerHTML = "Open Task";  
 
 }
 //search
-// const searchtask = (e) => {
-//     if (!e) e = window.event; 
+const searchTask = (e) => {
+    if (!e) e = window.event; 
 
-//     while(taskContents.firstChild){
-//         taskContents.replaceChild(taskContents.firstChild)
-//     }
+    // Remove all child nodes from the taskContents element
+    while (taskContents.firstChild) {
+        taskContents.removeChild(taskContents.firstChild);
+    }
 
-// }
+    // Filter the tasks in the state.taskList array based on the input value
+    const resultData = state.taskList.filter(({ title }) => 
+        title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+
+    // console.log(resultData);
+    resultData.map((cardData) => {
+        taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardData));
+    });
+    
+};
+
 

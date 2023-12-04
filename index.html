@@ -22,7 +22,7 @@
     />
   </head>
 
-  <body onload="LoadInitialData()">
+  <body onload = "LoadInitialData()">
 
     <!-- button for small screen (mobile)  -->
     <div class="add_btn_mobile_only .d-none .d-sm-block .d-md-none">
@@ -193,7 +193,7 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 85px;">
       <!-- search window  -->
       <section class="mt-5">
         <div class="row justify-content-center">
@@ -205,22 +205,13 @@
                 placeholder="Search your task here..."
                 aria-label="Search task"
                 aria-describedby="addon-wrapping"
+                oninput = "searchTask.apply(this, arguments)"
               />
               <span class="input-group-text" id="addon-wrapping">
                 <i class="fas fa-search"></i>
               </span>
             </div>
-          </div>
-          <!-- <div class="col-sm-12 col-md-6">
-                <div class="input-group flex-nowrap shadow-lg rounded">
-                    <input type="search" class="form-control" placeholder="Search your task here..."aria-label="Search task" aria-describedby="addon-wrapping">
-                    <span class="input-group-text" id="addon-wrapping">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </div>
-                
-            </div> -->
-        </div>
+          
       </section>
 
       <!-- cards section  -->
