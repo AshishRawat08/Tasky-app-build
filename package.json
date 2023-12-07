@@ -1,0 +1,24 @@
+{
+  "name": "tasky-app-build",
+  "version": "1.0.0",
+  "description": "server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "ashish": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshishRawat08/Tasky-app-build.git#main"
+  },
+  "author": "ashish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AshishRawat08/Tasky-app-build/issues"
+  },
+  "homepage": "https://github.com/AshishRawat08/Tasky-app-build/tree/main#readme",
+  "dependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
