@@ -1,36 +1,37 @@
 const http = require("http");
-const { url } = require("inspector");
 
-const port = 8081;  // local port number
+const port = 8081; // local port numbner 
 
-// http methods 
+// HTTP Methods
+
 /*
-GET: in order to get data from server
-POST: in order to sending data to server
-DELETE: deleting dta from the the database
-PATCH: minimum updating certain fields
-PUT: full update
+>> GET: Inorder to get data from server
+>> POST: Sending data to server
+>> DELETE: Deleting the data from database
+>> PATCH: Updating certain fields
+>> PUT: Full Update
 */
 
-const toDoList =["learn", "apply things", "success"];
+const toDoList = ["learn", "apply things", "success"];
 
 http
-    .createServer((req, res) => {    // call back function
-        const {method, url}= req
+  .createServer((req, res) => {
+    // call back func
+    // const { method, url } = req;
 
-        // console.log(method, url)
-        // https://localhost:8081/route-name
+    // // console.log(method, url);
 
-        if (url === "/todos"){
-                if(method === "GET"){
-                    res.writeHead(404);
-                    res.write(toDoList.toString());
-                }
-        } 
-        res.end()
-    // res.writeHead(200, {"Content-Type": "text/html"});
-    // res.write("<h1>Hey my server started hello i am here===hdwadhga</h1>");
+    // if (url === "/todos") {
+    //   if (method === "GET") {
+    //     res.writeHead(200);
+    //     res.write(toDoList.toString());
+    //   }
+    // }
     // res.end();
+    
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.write("<h1>Hey my server started hello i am hereadhga</h1>");
+    res.end();
 
 })
 .listen(port, () => {      // call back function 
