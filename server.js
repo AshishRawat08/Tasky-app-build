@@ -21,11 +21,66 @@ http
 
     // console.log(method, url);
     if (url === "/todos") {
-      if (method === "GET"){
-        res.writeHead(200);
+      if (method === "GET") {
+        res.writeHead(200, { "Content-Type": "text/html" });
         res.write(toDoList.toString());
-      }
+      } else if (method === "POST") {
+        let body = "";
+        req
+          .on("error", (err) => {   // error data and  end are the events 
+          console.log(err);
+        })
+          .on("data", (chunk) => {
+          body += chunk;
+          // console.log(chunk);    // data is in strinf formate
+        })
+          .on("end", () => {
+          body = JSON.parse(body);  // convert string into Json formate
 
+          let newToDo = toDoList;
+          newToDo.push(body.item);
+          console.log(newToDo);
+          // console.log("data:", body);
+        });
+      }else if(method ==="DELETE"){
+        let body = "";
+        req 
+          .on("error",(err) => {
+            console.log(err);
+          })
+          .on("data",(chunk) => {
+            body += chunk;
+            // console.log(chunk);
+          })
+          .on("end", () => { 
+            body = JSON.parse(body);
+
+            let deleteThisItem = body.item;
+        
+            for (let i=0; i < toDoList.length; i++){      // using for loop
+            if (toDoList[i] === deleteThisItem) {
+              toDoList.splice(i,1);
+              break;
+            }else {
+                 console.log("Error : MATCH NOT FOUND");
+                 break;
+            }
+          }
+
+          // toDoList.find((elem, index)=>{      // using find method
+          //   if (elem === deleteThisItem){
+          //     toDoList.splice(index,1);
+          //   } else {
+          //    console.log("error checking march not found")
+          //   }
+          // })
+        });
+      }
+      else {
+        res.writeHead(501);
+      }
+    } else {
+      res.writeHead(404);
     }
     res.end();
 

@@ -8,3 +8,5 @@
 # >> "ashish": "node server.js"
 # >> npm run custom-name
 # >> npm >>> node package manager
+
+# >> added  thunder client extension
